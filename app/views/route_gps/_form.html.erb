@@ -1,0 +1,42 @@
+<%= form_with(model: route_gp, local: true) do |form| %>
+  <% if route_gp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(route_gp.errors.count, "error") %> prohibited this route_gp from being saved:</h2>
+
+      <ul>
+      <% route_gp.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :mission_id %>
+    <%= form.text_field :mission_id, id: :route_gp_mission_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time %>
+    <%= form.time_select :time, id: :route_gp_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lat %>
+    <%= form.text_field :lat, id: :route_gp_lat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lon %>
+    <%= form.text_field :lon, id: :route_gp_lon %>
+  </div>
+
+  <div class="field">
+    <%= form.label :alt %>
+    <%= form.text_field :alt, id: :route_gp_alt %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

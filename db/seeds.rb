@@ -7,8 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Initial Role
-@admin = Role.create(name: "Admin")
-Role.create(name: "Follower")
+# @admin = Role.create(name: "Admin")
+# Role.create(name: "Follower")
+#
+# # Admin User
+# User.create(email: "admin@ait.asia", password: "secret123", password_confirmation: "secret123", role_id: @admin.id)
 
-# Admin User
-User.create(email: "admin@ait.asia", password: "secret123", password_confirmation: "secret123", role_id: @admin.id)
+@aircraft = Aircraft.create(name: 'Valentine', drone_type: 'Quadrotor')
+@mission = Mission.create(name: 'RedSun', aircraft_id: @aircraft.id, starttime: 1518611425000, endtime: 1518618625000)
+RouteGp.create(mission_id: @mission.id, time: 1518611485000, lat: 100.6405192, lon: 13.7657121, alt: 17)

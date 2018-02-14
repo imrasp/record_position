@@ -17,7 +17,7 @@ class AircraftsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create aircraft" do
     assert_difference('Aircraft.count') do
-      post aircrafts_url, params: { aircraft: { name: @aircraft.name, type: @aircraft.type } }
+      post aircrafts_url, params: { aircraft: { drone_type: @aircraft.drone_type, name: @aircraft.name } }
     end
 
     assert_redirected_to aircraft_url(Aircraft.last)
@@ -34,7 +34,7 @@ class AircraftsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update aircraft" do
-    patch aircraft_url(@aircraft), params: { aircraft: { name: @aircraft.name, type: @aircraft.type } }
+    patch aircraft_url(@aircraft), params: { aircraft: { drone_type: @aircraft.drone_type, name: @aircraft.name } }
     assert_redirected_to aircraft_url(@aircraft)
   end
 

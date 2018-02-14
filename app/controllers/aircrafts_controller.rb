@@ -1,5 +1,4 @@
 class AircraftsController < ApplicationController
-  before_filter :authenticate_user!
   before_action :set_aircraft, only: [:show, :edit, :update, :destroy]
 
   # GET /aircrafts
@@ -70,6 +69,6 @@ class AircraftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aircraft_params
-      params.require(:aircraft).permit(:name, :type)
+      params.require(:aircraft).permit(:name, :drone_type)
     end
 end

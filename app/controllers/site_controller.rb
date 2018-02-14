@@ -5,33 +5,34 @@ class SiteController < ApplicationController
   $text = "null"
 
   def index
-    $text += "#{request.body.read}"
+    # $text += "#{request.body.read}"
+    @lastmission = Mission.last()
+    if !@lastmission.nil?
 
-    @apath = Route.all
-    @geojson = Array.new
+      @drone = Aircraft.where(id:@lastmission.aircraft_id).last()
+      @apath = RouteGp.where(mission_id: @lastmission.id)
+      @geojson = Array.new
 
-    @apath.each do |apath|
-      @geojson << {
-          type: 'Feature',
-          geometry: {
-              type: 'Point',
-              coordinates: [apath.lon, apath.lat]
-          },
-          properties: {
-              title: 'Mapbox',
-              description: 'Test'
-
-          }
-      }
-    end
-
-    @geojson.each do |geo|
-      puts geo
+      @apath.each do |apath|
+        @geojson << {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [apath.lat, apath.lon]
+            },
+            properties: {
+                title: 'Mapbox',
+                description: 'Test'
+            }
+        }
+      end
+      @lastlat= @apath.last().lat
+      @lastlon= @apath.last().lon
     end
 
     respond_to do |format|
       format.html
-      format.json { render json: @geojson }  # respond with the created JSON object
+      format.json {render json: @geojson} # respond with the created JSON object
     end
   end
 
@@ -42,20 +43,39 @@ class SiteController < ApplicationController
     puts data_hash['lon']
     puts data_hash['alt']
 
-    @mission = Mission.find(1)
+    @mission = Mission.where(name: data_hash['mission_id'])
 
     puts "misison name : " + @mission.name.to_s
-    @position = Route.new(:mission_id => @mission.mission_id,
-        :timestamp => data_hash['time'],
-        :lat => data_hash['lat'],
-        :lon => data_hash['lon'],
-        :alt => data_hash['alt'])
-
+    @position = RouteGp.new(:mission_id => @mission.mission_id,
+                            :timestamp => data_hash['time'],
+                            :lat => data_hash['lat'],
+                            :lon => data_hash['lon'],
+                            :alt => data_hash['alt'])
     @position.save!
-    puts "position id is  : " + @position.id.to_s
+
     respond_to do |format|
-        format.html { redirect_to site_index_path}
+      format.html {redirect_to site_index_path}
     end
+  end
+
+  def stream_mission_info
+    data_hash = JSON.parse(request.body.read)
+    puts data_hash['mission_id']
+    puts data_hash['drone']
+
+    @aircraft = Aircraft.where(name: data_hash['drone'])
+    @mission = Mission.new(name: data_hash['mission_id'],
+                           aircraft_id: @aircraft.id,
+                           starttime: data_hash['startat'])
+    @mission.save!
+
+    respond_to do |format|
+      format.html {redirect_to site_index_path}
+    end
+  end
+
+  def stream_mission_endtime
+
   end
 
 end

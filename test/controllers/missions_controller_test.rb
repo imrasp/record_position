@@ -17,7 +17,7 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create mission" do
     assert_difference('Mission.count') do
-      post missions_url, params: { mission: { mission_id: @mission.mission_id, name: @mission.name } }
+      post missions_url, params: { mission: { aircraft_id: @mission.aircraft_id, endtime: @mission.endtime, name: @mission.name, starttime: @mission.starttime } }
     end
 
     assert_redirected_to mission_url(Mission.last)
@@ -34,7 +34,7 @@ class MissionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update mission" do
-    patch mission_url(@mission), params: { mission: { mission_id: @mission.mission_id, name: @mission.name } }
+    patch mission_url(@mission), params: { mission: { aircraft_id: @mission.aircraft_id, endtime: @mission.endtime, name: @mission.name, starttime: @mission.starttime } }
     assert_redirected_to mission_url(@mission)
   end
 

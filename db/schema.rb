@@ -10,35 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211044902) do
+ActiveRecord::Schema.define(version: 20180214164453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "aircrafts", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "drone_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "missions", force: :cascade do |t|
-    t.integer "mission_id"
+    t.bigint "aircraft_id"
     t.string "name"
+    t.time "starttime"
+    t.time "endtime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["aircraft_id"], name: "index_missions_on_aircraft_id"
   end
 
-  create_table "routes", force: :cascade do |t|
+  create_table "parts", force: :cascade do |t|
+    t.bigint "aircraft_id"
+    t.string "name"
+    t.string "description"
+    t.bigint "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aircraft_id"], name: "index_parts_on_aircraft_id"
+    t.index ["status_id"], name: "index_parts_on_status_id"
+  end
+
+  create_table "route_gps", force: :cascade do |t|
     t.bigint "mission_id"
-    t.integer "timestamp"
+    t.time "time"
     t.float "lat"
     t.float "lon"
     t.float "alt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["mission_id"], name: "index_routes_on_mission_id"
+    t.index ["mission_id"], name: "index_route_gps_on_mission_id"
   end
 
-  add_foreign_key "routes", "missions"
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "missions", "aircrafts"
+  add_foreign_key "parts", "aircrafts"
+  add_foreign_key "parts", "statuses"
+  add_foreign_key "route_gps", "missions"
 end

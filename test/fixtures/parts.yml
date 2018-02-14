@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aircraft: one
+  name: MyString
+  description: MyString
+  status: one
+
+two:
+  aircraft: two
+  name: MyString
+  description: MyString
+  status: two

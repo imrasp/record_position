@@ -12,13 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :mission_id %>
-    <%= form.number_field :mission_id, id: :mission_mission_id %>
+    <%= form.label :aircraft_id %>
+    <%= form.text_field :aircraft_id, id: :mission_aircraft_id %>
   </div>
 
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :mission_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :starttime %>
+    <%= form.time_select :starttime, id: :mission_starttime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :endtime %>
+    <%= form.time_select :endtime, id: :mission_endtime %>
   </div>
 
   <div class="actions">

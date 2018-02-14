@@ -1,5 +1,4 @@
 class MissionsController < ApplicationController
-  before_filter :authenticate_user!
   before_action :set_mission, only: [:show, :edit, :update, :destroy]
 
   # GET /missions
@@ -70,6 +69,6 @@ class MissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mission_params
-      params.require(:mission).permit(:mission_id, :name)
+      params.require(:mission).permit(:aircraft_id, :name, :starttime, :endtime)
     end
 end

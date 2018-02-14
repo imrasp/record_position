@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mission:</strong>
+  <%= @route_gp.mission %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @route_gp.time %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @route_gp.lat %>
+</p>
+
+<p>
+  <strong>Lon:</strong>
+  <%= @route_gp.lon %>
+</p>
+
+<p>
+  <strong>Alt:</strong>
+  <%= @route_gp.alt %>
+</p>
+
+<%= link_to 'Edit', edit_route_gp_path(@route_gp) %> |
+<%= link_to 'Back', route_gps_path %>

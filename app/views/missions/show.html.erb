@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Mission:</strong>
-  <%= @mission.mission_id %>
+  <strong>Aircraft:</strong>
+  <%= @mission.aircraft %>
 </p>
 
 <p>
   <strong>Name:</strong>
   <%= @mission.name %>
+</p>
+
+<p>
+  <strong>Starttime:</strong>
+  <%= @mission.starttime %>
+</p>
+
+<p>
+  <strong>Endtime:</strong>
+  <%= @mission.endtime %>
 </p>
 
 <%= link_to 'Edit', edit_mission_path(@mission) %> |
