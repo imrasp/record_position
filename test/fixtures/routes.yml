@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mission: one
+  timestamp: 1
+  lat: 1.5
+  lon: 1.5
+  alt: 1.5
+
+two:
+  mission: two
+  timestamp: 1
+  lat: 1.5
+  lon: 1.5
+  alt: 1.5

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mission:</strong>
+  <%= @route.mission.name %>
+</p>
+
+<p>
+  <strong>Timestamp:</strong>
+  <%= @route.timestamp %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @route.lat %>
+</p>
+
+<p>
+  <strong>Lon:</strong>
+  <%= @route.lon %>
+</p>
+
+<p>
+  <strong>Alt:</strong>
+  <%= @route.alt %>
+</p>
+
+<%= link_to 'Edit', edit_route_path(@route) %> |
+<%= link_to 'Back', routes_path %>

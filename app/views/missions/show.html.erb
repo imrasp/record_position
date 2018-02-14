@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mission:</strong>
+  <%= @mission.mission_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mission.name %>
+</p>
+
+<%= link_to 'Edit', edit_mission_path(@mission) %> |
+<%= link_to 'Back', missions_path %>

@@ -1,0 +1,93 @@
+  <div class="jumbotron">
+    <div class="col-md-12 px-0">
+      <div id='map'></div>
+      <div id='menu'>
+        <input id='basic' type='radio' name='rtoggle' value='basic' checked='checked'>
+        <label for='basic'>basic</label>
+        <input id='streets' type='radio' name='rtoggle' value='streets'>
+        <label for='streets'>streets</label>
+        <input id='bright' type='radio' name='rtoggle' value='bright'>
+        <label for='bright'>bright</label>
+        <input id='light' type='radio' name='rtoggle' value='light'>
+        <label for='light'>light</label>
+        <input id='dark' type='radio' name='rtoggle' value='dark'>
+        <label for='dark'>dark</label>
+        <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+        <label for='satellite'>satellite</label>
+      </div>
+    </div>
+  </div>
+
+<div class="row mb-2">
+  <div class="col-md-6">
+    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+      <div class="card-body d-flex flex-column align-items-start">
+        <strong class="d-inline-block mb-2 text-primary">Logs</strong>
+        <h3 class="mb-0">
+          <a class="text-dark" href="#">Lastest Downloaded Logs</a>
+        </h3>
+        <div class="mb-1 text-muted">Nov 12</div>
+        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+        <a href="#">Continue reading</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+      <div class="card-body d-flex flex-column align-items-start">
+        <strong class="d-inline-block mb-2 text-success">Aircraft Information</strong>
+        <h3 class="mb-0">
+          <a class="text-dark" href="#">Drone Name</a>
+        </h3>
+        <div class="mb-1 text-muted">Update at 2017 Nov 11</div>
+        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+      <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
+    </div>
+  </div>
+</div>
+
+<script>
+  // auto refresh
+//    setTimeout("location.reload();",10000);
+
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3QxMTc3NTIiLCJhIjoiY2pkZnFxN2R3MGNidDMzbW1uMHZ1Z2xwNSJ9.RtzgUIRiGXqRIIB0XbOy2w';
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/basic-v9',
+        center: [100.6134565, 14.080273],
+        zoom: 15
+    });
+
+    var layerList = document.getElementById('menu');
+    var inputs = layerList.getElementsByTagName('input');
+
+    function switchLayer(layer) {
+        var layerId = layer.target.id;
+        map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = switchLayer;
+    }
+
+    var geojson = {
+        type: 'FeatureCollection',
+        features: <%= raw @geojson.to_json %>
+    };
+
+    // add markers to map
+    geojson.features.forEach(function (marker) {
+
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+    });
+
+</script>
