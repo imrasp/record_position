@@ -3,7 +3,9 @@
 one:
   name: MyString
   drone_type: MyString
+  image: MyString
 
 two:
   name: MyString
   drone_type: MyString
+  image: MyString

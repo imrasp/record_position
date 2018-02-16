@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20180214164453) do
   create_table "aircrafts", force: :cascade do |t|
     t.string "name"
     t.string "drone_type"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

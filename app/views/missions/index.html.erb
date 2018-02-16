@@ -16,7 +16,7 @@
   <tbody>
     <% @missions.each do |mission| %>
       <tr>
-        <td><%= mission.aircraft %></td>
+        <td><%= mission.aircraft.name %></td>
         <td><%= mission.name %></td>
         <td><%= mission.starttime %></td>
         <td><%= mission.endtime %></td>

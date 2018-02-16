@@ -3,13 +3,14 @@ class SiteController < ApplicationController
   require 'json'
 
   $text = "null"
-
   def index
     # $text += "#{request.body.read}"
     @lastmission = Mission.last()
     if !@lastmission.nil?
 
       @drone = Aircraft.where(id:@lastmission.aircraft_id).last()
+      @parts = Part.where(aircraft_id:@lastmission.aircraft_id)
+      puts "#part : " + @parts.count().to_s
       @apath = RouteGp.where(mission_id: @lastmission.id)
       @geojson = Array.new
 
@@ -77,5 +78,10 @@ class SiteController < ApplicationController
   def stream_mission_endtime
 
   end
+
+  def stream_ip_add
+     puts "#{request.body.read}"
+  end
+
 
 end

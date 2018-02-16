@@ -69,6 +69,6 @@ class AircraftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aircraft_params
-      params.require(:aircraft).permit(:name, :drone_type)
+      params.require(:aircraft).permit(:name, :drone_type, :image)
     end
 end

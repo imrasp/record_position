@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :aircraft_id %>
-    <%= form.text_field :aircraft_id, id: :part_aircraft_id %>
+    <%= form.collection_select(:aircraft_id, Aircraft.all, :id, :name) %>
   </div>
 
   <div class="field">
@@ -27,8 +26,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :status_id %>
-    <%= form.text_field :status_id, id: :part_status_id %>
+    <%= form.collection_select(:status_id, Status.all, :id, :name) %>
   </div>
 
   <div class="actions">

@@ -13,6 +13,6 @@
 # # Admin User
 # User.create(email: "admin@ait.asia", password: "secret123", password_confirmation: "secret123", role_id: @admin.id)
 
-@aircraft = Aircraft.create(name: 'Valentine', drone_type: 'Quadrotor')
+@aircraft = Aircraft.create(name: 'Valentine', drone_type: 'Quadrotor', image: "https://static.pexels.com/photos/704748/pexels-photo-704748.jpeg")
 @mission = Mission.create(name: 'RedSun', aircraft_id: @aircraft.id, starttime: 1518611425000, endtime: 1518618625000)
 RouteGp.create(mission_id: @mission.id, time: 1518611485000, lat: 100.6405192, lon: 13.7657121, alt: 17)

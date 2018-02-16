@@ -16,10 +16,10 @@
   <tbody>
     <% @parts.each do |part| %>
       <tr>
-        <td><%= part.aircraft %></td>
+        <td><%= part.aircraft.name %></td>
         <td><%= part.name %></td>
         <td><%= part.description %></td>
-        <td><%= part.status %></td>
+        <td><%= part.status.name %></td>
         <td><%= link_to 'Show', part %></td>
         <td><%= link_to 'Edit', edit_part_path(part) %></td>
         <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>

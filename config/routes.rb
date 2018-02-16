@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  resources :aircrafts
   resources :missions
   resources :route_gps
-  resources :aircrafts
   resources :parts
   resources :statuses
   get 'site/index'
@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   root 'site#index'
   match '/current_pos' => 'site#stream_position', via: :post
-
+  match '/mission_info' => 'site#stream_mission_info', via: :post
+  match '/drone_ip' => 'site#stream_ip_add', via: :post
 end
